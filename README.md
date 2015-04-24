@@ -14,7 +14,7 @@ Android Plugin Lib
 
 
 【注意】
-开发插件的时候，请将AndroidPlugoin_Lib插件JAR包勿编译到插件中，否则无法正常加载插件。
+开发插件的时候，请勿将AndroidPlugoin_Lib插件JAR包编译到插件中，否则无法正常加载插件。
 
 
 
