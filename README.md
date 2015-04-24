@@ -5,6 +5,18 @@ Android Plugin Lib
 此插件是在此代码上继续开发：https://github.com/singwhatiwanna/dynamic-load-apk
 具体原理请参考以上链接。
 
+【工程说明】
+>AndroidPlugin_MainHost 宿主程序，直接运行即可
+
+>AndroidPlugin_PluginLib 插件类库，宿主程序会依赖，开发插件得是也会依赖此类库
+
+>其他都是插件APK
+
+
+【注意】
+开发插件的时候，请将AndroidPlugoin_Lib插件JAR包勿编译到插件中，否则无法正常加载插件。
+
+
 
 【功能支持】
 =================
