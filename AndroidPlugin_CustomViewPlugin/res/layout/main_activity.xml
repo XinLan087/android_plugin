@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/de.ankri"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <de.ankri.views.Switch
+        android:id="@+id/btn_on_off"
+        android:layout_width="38dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        
+        android:layout_marginTop="10dp"
+        app:textLeft="开"
+        app:textRight="关" />
+
+    <de.ankri.views.Switch
+        android:id="@+id/btn_left_right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        app:isChecked="true"
+        app:textLeft="@string/left"
+        app:textRight="@string/right" />
+
+    <de.ankri.views.Switch
+        android:id="@+id/btn_cheer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="@string/cheer"
+        app:textLeft="@string/woohoo"
+        app:textRight="@string/yeah" />
+
+    <de.ankri.views.Switch
+        android:id="@+id/btn_checked_unchecked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="@string/default_checked"
+        app:isChecked="true"
+        app:textLeft="@string/checked"
+        app:textRight="@string/unchecked" />
+
+</LinearLayout>

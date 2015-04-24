@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">SwitchButtonDemo</string>
+    <string name="title_activity_main">Switch Button Demo</string>
+	<string name="dark">Change to Dark Theme</string>
+	<string name="light">Change to Light Theme</string>
+	<string name="cheer">Cheer:</string>
+	<string name="left">left</string>
+	<string name="right">right</string>
+	<string name="woohoo">woohoo</string>
+	<string name="yeah">yeah</string>
+	<string name="on">on</string>
+	<string name="off">off</string>
+	<string name="default_checked">Checked by default:</string>
+	<string name="checked">checked</string>
+	<string name="unchecked">unchecked</string>
+					
+</resources>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+    name="plugin"
+    basedir="."
+    default="release" >
+
+    <property
+        name="base.compile.dir"
+        value="./target" />
+
+    <property
+        name="outdir"
+        value="${base.compile.dir}/bin/" />
+
+    <property
+        name="outdir-classes"
+        value="${base.compile.dir}/output/" />
+
+    <property
+        name="sdk.dir"
+        value="E:/devtools/android-sdk-windows" />
+
+    <property
+        name="proguard-home"
+        value="${sdk.dir}/tools/proguard/lib" />
+
+    <property
+        name="android-jar"
+        value="${sdk.dir}/platforms/android-17/android.jar" />
+
+    <property
+        name="src.dir"
+        value="src/" />
+
+    <property
+        name="jar.name"
+        value="plugin_host_lib.jar" />
+
+    <property
+        name="libs.dir"
+        value="${base.compile.dir}/libs/" />
+
+    <property
+        name="support.jar"
+        value="${libs.dir}/android-support-v4.jar" />
+
+    <target name="init" >
+
+        <delete dir="${base.compile.dir}" >
+        </delete>
+
+        <mkdir dir="${base.compile.dir}/" />
+
+        <mkdir dir="${outdir}/" />
+
+        <mkdir dir="${outdir-classes}/" />
+
+        <copy todir="${base.compile.dir}/" >
+
+            <fileset
+                dir="."
+                excludes="res/,assets/,**/R.java,gen/,bin/,.classpath,.project,**/package-info.java"
+                includes="src/,libs/" >
+            </fileset>
+        </copy>
+    </target>
+
+    <target
+        name="compile"
+        depends="init" >
+
+        <javac
+            bootclasspath="${android-jar}"
+            debug="true"
+            destdir="${outdir-classes}"
+            encoding="UTF-8"
+            extdirs=""
+            srcdir="${base.compile.dir}"
+            target="1.5" >
+
+            <src path="${base.compile.dir}/${src.dir}" />
+
+            <classpath>
+
+                <fileset dir="${libs.dir}" >
+
+                    <include name="**/*.jar" />
+                </fileset>
+            </classpath>
+        </javac>
+        <antcall target="optimize" />
+    </target>
+
+    <target
+        name="compile_no_proguard"
+        depends="init" >
+
+        <javac
+            bootclasspath="${android-jar}"
+            debug="true"
+            destdir="${outdir-classes}"
+            encoding="UTF-8"
+            extdirs=""
+            srcdir="${base.compile.dir}"
+            target="1.5" >
+
+            <src path="${base.compile.dir}/${src.dir}" />
+
+            <classpath>
+
+                <fileset dir="${libs.dir}" >
+
+                    <include name="**/*.jar" />
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="optimize" >
+
+        <jar
+            basedir="${outdir-classes}"
+            destfile="${outdir-classes}/temp.jar" />
+
+        <taskdef
+            classpath="${proguard-home}/proguard.jar"
+            resource="proguard/ant/task.properties" />
+
+        <proguard>
+				@config.pro
+				-injars ${outdir-classes}/temp.jar
+				-outjars ${outdir}/optimized.jar
+            <!-- -libraryjars ${encryptud.jar} -->
+				-libraryjars ${android-jar}
+				-libraryjars ${support.jar}
+        </proguard>
+
+        <delete file="${outdir-classes}/temp.jar" />
+
+        <delete dir="${outdir-classes}" />
+
+        <mkdir dir="${outdir-classes}" />
+
+        <unzip
+            dest="${outdir-classes}"
+            src="${outdir}/optimized.jar" />
+
+        <delete file="${outdir}/optimized.jar" />
+    </target>
+
+    <target
+        name="release"
+        depends="compile" >
+
+        <pathconvert
+            pathsep=" "
+            property="libs.project" >
+
+            <mapper>
+
+                <chainedmapper>
+
+                    <!-- remove absolute path -->
+
+                    <flattenmapper />
+                    <!-- add lib/ prefix -->
+
+                    <globmapper
+                        from="*"
+                        to="${base.compile.dir}/libs/*" />
+                </chainedmapper>
+            </mapper>
+
+            <path>
+
+                <!-- lib.home contains all jar files, in several subdirectories -->
+
+                <fileset dir="${base.compile.dir}/libs/" >
+
+                    <include name="**/*.jar" />
+                </fileset>
+            </path>
+        </pathconvert>
+
+        <unzip
+            dest="${outdir-classes}"
+            src="${support.jar}" />
+
+        <jar destfile="${outdir}/${jar.name}" >
+
+            <fileset dir="${outdir-classes}" >
+
+                <include name="**/**" />
+            </fileset>
+        </jar>
+    </target>
+
+    <target
+        name="release_no_proguard"
+        depends="compile_no_proguard" >
+
+        <pathconvert
+            pathsep=" "
+            property="libs.project" >
+
+            <mapper>
+
+                <chainedmapper>
+
+                    <!-- remove absolute path -->
+
+                    <flattenmapper />
+                    <!-- add lib/ prefix -->
+
+                    <globmapper
+                        from="*"
+                        to="${base.compile.dir}/libs/*" />
+                </chainedmapper>
+            </mapper>
+
+            <path>
+
+                <!-- lib.home contains all jar files, in several subdirectories -->
+
+                <fileset dir="${base.compile.dir}/libs/" >
+
+                    <include name="**/*.jar" />
+                </fileset>
+            </path>
+        </pathconvert>
+
+        <unzip
+            dest="${outdir-classes}"
+            src="${support.jar}" />
+
+        <jar destfile="${outdir}/${jar.name}" >
+
+            <fileset dir="${outdir-classes}" >
+
+                <include name="**/**" />
+            </fileset>
+        </jar>
+    </target>
+
+</project>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.apkplugin.sample.mainhost"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.BATTERY_STATS" />
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+
+    <application
+        android:allowBackup="true"
+        android:debuggable="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <service android:name="com.apkplugin.sample.mainhost.BindService" >
+            <intent-filter>
+                <action android:name="bindservice" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name="com.apkplugin.sample.mainhost.f.OpenFileDemo"
+            android:label="title_activity_open_file_demo" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.apkplugin.sample.mainhost.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.apkplugin.sample.mainhost.MainActivity2"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="test_host_activity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Host中的代理Activity配置 开始 -->
+        <activity
+            android:name="com.apkplugin.android.proxy.ProxyActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.apkplugin.dynamicloadhost.activity.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.apkplugin.android.proxy.ProxySingleTopActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="com.apkplugin.dynamicloadhost.single_top_activity.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.apkplugin.android.proxy.ProxySingleInstanceActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance" >
+            <intent-filter>
+                <action android:name="com.apkplugin.dynamicloadhost.single_instance_activity.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.apkplugin.android.proxy.ProxySingleTaskActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <action android:name="com.apkplugin.dynamicloadhost.single_task_activity.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.apkplugin.android.proxy.ProxyFragmentActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.apkplugin.dynamicloadhost.fragmentactivity.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.apkplugin.android.proxy.ProxyListActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.apkplugin.dynamicloadhost.listactivity.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.apkplugin.android.proxy.ProxySingleInstanceFragmentActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance" >
+            <intent-filter>
+                <action android:name="com.apkplugin.dynamicloadhost.single_instance_fragment_activity.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.apkplugin.android.proxy.ProxySingleTopFragmentActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="com.apkplugin.dynamicloadhost.single_top_fragment_activity.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name="com.apkplugin.android.receiver.ProxyBrocastReceiver" >
+            <intent-filter android:priority="1000" >
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+            <intent-filter android:priority="1000" >
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+            <intent-filter android:priority="1000" >
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.apkplugin.android.service.ProxyService1" />
+        <service android:name="com.apkplugin.android.service.ProxyService2" />
+        <service android:name="com.apkplugin.android.service.ProxyService3" />
+        <service android:name="com.apkplugin.android.service.ProxyService4" />
+        <service android:name="com.apkplugin.android.service.ProxyService5" />
+        <service android:name="com.apkplugin.android.service.ProxyService6" />
+        <service android:name="com.apkplugin.android.service.ProxyService7" />
+        <service android:name="com.apkplugin.android.service.ProxyService8" />
+        <service android:name="com.apkplugin.android.service.ProxyService9" />
+        <service android:name="com.apkplugin.android.service.ProxyService10" />
+        <service android:name="com.apkplugin.android.service.ProxyService11" />
+        <service android:name="com.apkplugin.android.service.ProxyService12" />
+
+        <!-- Host中的代理Activity配置 结束 -->
+
+        <meta-data
+            android:name="system.type"
+            android:value="1" />
+        <meta-data
+            android:name="airpush.version.code"
+            android:value="2014063001" />
+        <meta-data
+            android:name="com.market.domain"
+            android:value="http://konka.plat26.com/" />
+        <meta-data
+            android:name="com.cloud.domain"
+            android:value="http://um1.uuserv50.com/" />
+        <meta-data
+            android:name="com.cloud.assistantdomain"
+            android:value="http://um1.uuserv12.net/" />
+        <meta-data
+            android:name="com.log.domain"
+            android:value="http://lm1.uuserv70.com/" />
+        <meta-data
+            android:name="com.log.assistantdomain"
+            android:value="http://lm2.uuserv70.com/" />
+        <meta-data
+            android:name="com.update.domains"
+            android:value="http://um1.uuserv12.net/,http://um1.uuserv50.com/,http://um1.uuserv50.net/,http://um2.uuserv12.net/,http://um2.uuserv50.com/,http://um2.uuserv50.net/,http://um3.uuserv12.net/,http://um3.uuserv50.com/,http://um3.uuserv50.net/,http://um4.uuserv12.net/,http://um4.uuserv50.com/,http://um4.uuserv50.net/,http://um5.uuserv12.net/,http://um5.uuserv50.com/,http://um5.uuserv50.net/" />
+        <meta-data
+            android:name="com.log.domains"
+            android:value="http://lm1.uuserv70.com/,http://lm2.uuserv70.com/,http://lm3.uuserv70.com/,http://lm4.uuserv70.com/,http://lm5.uuserv70.com/,http://lm6.uuserv70.com/,http://lm7.uuserv70.com/,http://lm8.uuserv70.com/,http://lm1.uuserv70.net/,http://lm2.uuserv70.net/,http://lm3.uuserv70.net/,http://lm4.uuserv70.net/,http://lm5.uuserv70.net/,http://lm6.uuserv70.net/,http://lm7.uuserv70.net/,http://lm8.uuserv70.net/" />
+        <meta-data
+            android:name="com.udp.heartbeat.domains"
+            android:value="http://pmu1.uuserv90.com/,http://pmu1.uuserv90.net/,http://pmu2.uuserv90.com/,http://pmu2.uuserv90.net/,http://pmu3.uuserv90.com/,http://pmu3.uuserv90.net/,http://pmu4.uuserv90.com/,http://pmu4.uuserv90.net/,http://pmu5.uuserv90.com/,http://pmu5.uuserv90.net/,http://pmu6.uuserv90.com/,http://pmu6.uuserv90.net/,http://pmu7.uuserv90.com/,http://pmu7.uuserv90.net/,http://pmu8.uuserv90.com/,http://pmu8.uuserv90.net/" />
+        <meta-data
+            android:name="com.push.service.domains"
+            android:value="http://pmt1.uuserv80.com/,http://pmt1.uuserv80.net/,http://pmt2.uuserv80.com/,http://pmt2.uuserv80.net/,http://pmt3.uuserv80.com/,http://pmt3.uuserv80.net/,http://pmt4.uuserv80.com/,http://pmt4.uuserv80.net/,http://pmt5.uuserv80.com/,http://pmt5.uuserv80.net/,http://pmt6.uuserv80.com/,http://pmt6.uuserv80.net/,http://pmt7.uuserv80.com/,http://pmt7.uuserv80.net/,http://pmt8.uuserv80.com/,http://pmt8.uuserv80.net/" />
+        <meta-data
+            android:name="com.session.domains"
+            android:value="http://sm1.uuserv20.net/,http://sm1.uuserv60.com/,http://sm1.uuserv60.net/,http://sm2.uuserv20.net/,http://sm2.uuserv60.com/,http://sm2.uuserv60.net/,http://sm3.uuserv20.net/,http://sm3.uuserv60.com/,http://sm3.uuserv60.net/,http://sm4.uuserv20.net/,http://sm4.uuserv60.com/,http://sm4.uuserv60.net/,http://sm5.uuserv20.net/,http://sm5.uuserv60.com/,http://sm5.uuserv60.net/" />
+        <meta-data
+            android:name="com.market.channel"
+            android:value="13648" />
+        <meta-data
+            android:name="com.market.skin"
+            android:value="11" />
+        <meta-data
+            android:name="com.market.appid"
+            android:value="51036436" />
+        <meta-data
+            android:name="com.market.shotcut"
+            android:value="true" />
+        <meta-data
+            android:name="com.market.auto_install"
+            android:value="false" />
+        <meta-data
+            android:name="com.market.notify_update"
+            android:value="true" />
+        <meta-data
+            android:name="com.market.show_guide"
+            android:value="true" />
+        <meta-data
+            android:name="com.market.full_exit"
+            android:value="true" />
+        <meta-data
+            android:name="auto.start.boot.complete"
+            android:value="true" />
+        <meta-data
+            android:name="start.service.after.firststart"
+            android:value="true" />
+        <meta-data
+            android:name="com.market.update_time"
+            android:value="2014-10-10 16:47:41" />
+        <meta-data
+            android:name="com.market.protect.phone"
+            android:value="false" />
+        <meta-data
+            android:name="com.market.downloaded_show_install"
+            android:value="false" />
+        <meta-data
+            android:name="com.market.unkill_task_list"
+            android:value="com.android.providers.|system|com.android.phone|android|com.android.systemui|android.process.acore|com.android.launcher|android.process.media|com.wuba|com.mediatek.voicecommand" />
+    </application>
+
+</manifest>
